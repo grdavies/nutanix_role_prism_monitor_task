@@ -1,0 +1,16 @@
+---
+# tasks file for nutanix_role_prism_monitor_task
+- include_tasks: setup_api.yml
+
+- ansible.builtin.fail:
+    msg: "nutanix_task_uuid must be defined"
+  when:
+    - nutanix_task_uuid == ""
+
+- include_tasks: pe_monitor_task.yml
+  when:
+    - nutanix_endpoint_prism_type == 'pe'
+
+- include_tasks: pc_monitor_task.yml
+  when:
+    - nutanix_endpoint_prism_type == 'pc'

@@ -1,0 +1,11 @@
+---
+# defaults file for nutanix_role_prism_monitor_task
+nutanix_host: ""
+nutanix_username: ""
+nutanix_password: ""
+nutanix_port: 9440
+validate_certs: no
+nutanix_debug: no
+nutanix_task_uuid: ""
+nutanix_task_retries: 60
+nutanix_task_retry_delay: 60
