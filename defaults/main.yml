@@ -9,3 +9,4 @@ nutanix_debug: no
 nutanix_task_uuid: ""
 nutanix_task_retries: 60
 nutanix_task_retry_delay: 60
+play_fail_on_nutanix_task_failure: yes
