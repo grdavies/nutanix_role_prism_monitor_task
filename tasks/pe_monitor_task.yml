@@ -14,12 +14,12 @@
 
 - name: "Task {{ nutanix_task_uuid }} failed"
   ansible.builtin.fail:
-    msg: "{{monitored_task.json.operation_type}} failed at {{ monitored_task.json.percentage_complete }}%. Message: {{ monitored_task.json.message }}"
+    msg: "{{ monitored_task.json.operation_type }} failed at {{ monitored_task.json.percentage_complete }}%. Message: {{ monitored_task.json.message }}"
   when: monitored_task.json.progress_status | lower == 'failed'
 
 - name: "Task {{ nutanix_task_uuid }} succeeded"
   ansible.builtin.debug:
-    msg: "{{monitored_task.json.operation_type}} succeeded. Message: {{ monitored_task.json.message }}"
+    msg: "{{ monitored_task.json.operation_type }} succeeded. Message: {{ monitored_task.json.message }}"
   when:
     - monitored_task.json.progress_status | lower == 'succeeded'
     - play_fail_on_nutanix_task_failure
