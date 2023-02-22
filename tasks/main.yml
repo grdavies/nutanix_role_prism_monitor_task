@@ -12,7 +12,7 @@
   when:
     - nutanix_debug
 
-- name: nutanix_task_uuid not defined or is empty
+- name: Var nutanix_task_uuid not defined or is empty
   ansible.builtin.fail:
     msg: "nutanix_task_uuid must be defined"
   when:
