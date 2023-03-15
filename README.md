@@ -14,7 +14,7 @@ This Ansible role will check the status of a specific task UUID for a number of 
 | nutanix_task_uuid          | yes      | ""      |                                                                                 | UUID of task to be monitored                                                                                                                       |
 | nutanix_task_retries       | no       | 60      |                                                                                 | The number of times to check the task status                                                                                                       |
 | nutanix_task_retry_delay   | no       | 60      |                                                                                 | The amount of time in seconds between each poll for task status                                                                                    |
-| nutanix_task_allow_failure | no       | no      |                                                                                 | Whether the nutanix task may fail (for example an LCM upgrade where the CVM hosting the API service gets restarted)                                |
+| nutanix_task_allow_failure | no       | no      | yes / no                                                                        | Whether the nutanix task may fail (for example an LCM upgrade where the CVM hosting the API service gets restarted)                                |
 
 ## Dependencies
 
