@@ -1,5 +1,5 @@
 ---
-- name: "Monitoring task {{ nutanix_task_uuid }}"
+- name: "Monitoring PE task {{ nutanix_task_uuid }}"
   uri:
     url: "https://{{ nutanix_host }}:{{ nutanix_port }}/PrismGateway/services/rest/v2.0/tasks/{{ nutanix_task_uuid }}"
     method: GET
@@ -9,16 +9,16 @@
       Authorization: "{{ nutanix_api_auth }}"
   ignore_errors: "{{ nutanix_task_allow_failure }}"
   register: monitored_task
-  until: monitored_task.json.progress_status | lower | default('') == 'succeeded' or monitored_task.json.progress_status | lower  | default('') == 'failed'
+  until: monitored_task.json.progress_status | default('')  | lower == 'succeeded' or monitored_task.json.progress_status | default('') | lower  == 'failed'
   retries: "{{ nutanix_task_retries }}"
   delay: "{{ nutanix_task_retry_delay }}"
 
-- name: "Task {{ nutanix_task_uuid }} failed"
+- name: "PE task {{ nutanix_task_uuid }} failed"
   ansible.builtin.fail:
     msg: "{{ monitored_task.json.operation_type }} failed at {{ monitored_task.json.percentage_complete }}%. Message: {{ monitored_task.json.message }}"
   when: monitored_task.json.progress_status | lower == 'failed'
 
-- name: "Task {{ nutanix_task_uuid }} succeeded"
+- name: "PE task {{ nutanix_task_uuid }} succeeded"
   ansible.builtin.debug:
     msg: "{{ monitored_task.json.operation_type }} succeeded. Message: {{ monitored_task.json.message }}"
   when:
