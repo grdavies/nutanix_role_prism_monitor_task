@@ -9,7 +9,7 @@
       Authorization: "{{ nutanix_api_auth }}"
   ignore_errors: "{{ nutanix_task_allow_failure }}"
   register: monitored_task
-  until: monitored_task.json.status | lower == 'succeeded' or monitored_task.json.status | lower == 'failed'
+  until: monitored_task.json.status | lower | default('') == 'succeeded' or monitored_task.json.status | lower  | default('') == 'failed'
   retries: "{{ nutanix_task_retries }}"
   delay: "{{ nutanix_task_retry_delay }}"
 
